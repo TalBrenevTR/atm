@@ -1,9 +1,9 @@
-import React from 'react';
+import { Atm } from './components/Atm';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello World!</h1>
+      <Atm />
     </div>
   );
 }

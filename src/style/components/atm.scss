@@ -1,0 +1,40 @@
+.Atm {
+  display: flex;
+  flex-flow: column;
+  width: 350px;
+  height: 100vh;
+  box-sizing: border-box;
+  margin: auto;
+  padding-top: 50px;
+
+  .atm-header {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 15px;
+    background-color: $dark-blue;
+    padding: 10px 20px;
+
+    .atm-sign {
+      width: 70%;
+      display: block;
+      margin: auto;
+    }
+
+    .atm-sign-graffiti {
+      position: absolute;
+      width: 50%;
+      top: 20%;
+      left: 40%;
+    }
+  }
+
+  .atm-body {
+    width: 85%;
+    flex: 1;
+    background-color: $white;
+    margin: auto;
+
+    border-top: 5px solid $gray-2;
+  }
+}

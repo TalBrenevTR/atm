@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# ATM
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Requirements
 
-## Available Scripts
+The app was tested with the following, though it should work for other browsers/OSes:
+- npm v10.9.0
+- NodeJS v23.3.0
+- Google Chrome v134
+- macOS v13.7.4
 
-In the project directory, you can run:
+## Running the App
 
-### `npm start`
+Simply run:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+npm start
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+and open [http://localhost:3000](http://localhost:3000) in the browser.
 
-### `npm test`
+## Mock Data
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The API is mocked out using LocalStorage as a "backend", and it will be
+preloaded with sample data the first time you open the app in the browser.
+Updates to the data will persist, even if you close and open the page.
 
-### `npm run build`
+The initial data is described in the table below:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Card Number | Name           | PIN  | Card       | Balance     |
+| ----------- | -------------- | ---- | ---------- | ----------- |
+| 1111111111  | Peter Parker   | 1234 | star       | 500.66      |
+| 2222222222  | John Doe       | 2345 | pulse      | 1423.78     |
+| 3333333333  | Jane Doe       | 3456 | maestro    | 3000.00     |
+| 4444444444  | Frodo Baggins  | 4567 | mastercard | 10000000.00 |
+| 5555555555  | Samwise Gamgee | 5678 | plus       | 100.23      |
+| 6666666666  | Aragorn        | 6789 | visa       | 0.27        |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Using the ATM
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You will first need to select a card to "insert".
+You can do this by entering a card number from the mock data above.
 
-### `npm run eject`
+The ATM will prompt you for a PIN. Enter the matching PIN from the mock data
+above, by using the keypad on the ATM, and pressing the "Submit" button.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+You should now be on the main menu of the ATM. You can interact with it
+by pressing the buttons on either side of the "screen".

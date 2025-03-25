@@ -1,7 +1,7 @@
 import BigNumber from "bignumber.js";
 import { Api, User } from "./Api";
 
-let apiDelay = 1500;
+let apiDelay = 1000;
 
 function getProperty(cardNumber: string, property: string): string | null {
   return window.localStorage.getItem("mockapi.user." + cardNumber + "." + property);

@@ -71,18 +71,33 @@ function Atm({ cardNumber, exit } :
         buttonLabels[3] = "Exit";
         buttonHandlers[3] = handleExit;
         buttonLabels[7] = "Re-Enter PIN";
-        buttonHandlers[7] = () => setError(null);
+        buttonHandlers[7] = () => {
+          setPin("");
+          setError(null);
+        };
         break
     }
   }
+
   else if (cardNumber) {
     if (!user) {
+      mainText = "Please enter your PIN:"
+      typedText = pin.replace(/./g, "*");
       buttonLabels[3] = "Exit";
       buttonHandlers[3] = handleExit;
       buttonLabels[7] = "Submit";
       buttonHandlers[7] = submitPin;
-      mainText = "Please enter your PIN:"
-      typedText = pin.replace(/./g, "*");
+    }
+
+    else {
+      mainText = "Hi " + user.name + "! Please make a choice:"
+      buttonLabels[5] = "Exit";
+      buttonHandlers[5] = handleExit;
+      buttonLabels[7] = "Re-Enter PIN";
+      buttonHandlers[7] = () => {
+        setPin("");
+        setUser(null);
+      };
     }
   }
 

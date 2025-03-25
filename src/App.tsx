@@ -1,11 +1,19 @@
+import { useState } from 'react';
 import { Atm } from './components/Atm';
+import { CardReader } from './components/CardReader';
 
 function App() {
+  let [cardNumber, setCardNumber] = useState<string | null>(null);
+
   return (
-    <div className="App">
-      <Atm cardNumber="1111111111" />
-    </div>
-  );
+    <>
+      {(!cardNumber) &&
+       <CardReader setCardNumber={(cardNumber) => setCardNumber(cardNumber)} />}
+      <div className="App">
+        <Atm cardNumber={cardNumber} />
+      </div>
+    </>
+  )
 }
 
 export default App;

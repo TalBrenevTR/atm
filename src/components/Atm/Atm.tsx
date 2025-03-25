@@ -1,26 +1,29 @@
 import { useState } from "react";
 import { Screen } from "./Screen";
 
-function Atm({ cardNumber } : { cardNumber: string }) {
-  let user, setUser = useState(null);
+const nulls = [null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null];
 
-  let labels = [null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                "Enter PIN"];
+function Atm({ cardNumber } : { cardNumber: string | null }) {
+  let [user, setUser] = useState(null);
 
-  let handlers = [null,
-                  null,
-                  null,
-                  null,
-                  null,
-                  null,
-                  null,
-                  () => {console.log("Test")}];
+  let buttonLabels: Array<string | null> = nulls.slice();
+  let buttonHandlers: Array<null | (() => void)> = nulls.slice();
+  let mainText = "";
+
+  if (cardNumber) {
+    if (!user) {
+      buttonLabels[7] = "Enter PIN";
+      buttonHandlers[7] = () =>  console.log("Test");
+      mainText = "Welcome to the ATM";
+    }
+  }
 
   return (
     <div className="Atm">
@@ -29,9 +32,9 @@ function Atm({ cardNumber } : { cardNumber: string }) {
         <img className="atm-sign-graffiti" src="img/graffiti.png" alt="" />
       </div>
       <div className="atm-body">
-        <Screen mainText="Welcome to the ATM"
-                buttonLabels={labels}
-                buttonHandlers={handlers}/>
+        <Screen mainText={mainText}
+                buttonLabels={buttonLabels}
+                buttonHandlers={buttonHandlers}/>
         <div className="atm-footer">
           <img className="systems" src="img/systems.png" alt="Systems" />
           <img className="sticker" src="img/sticker_graf.png" alt="" />

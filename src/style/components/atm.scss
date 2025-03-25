@@ -140,5 +140,22 @@
         }
       }
     }
+
+    .atm-footer {
+      position: relative;
+      width: 60%;
+      margin: auto;
+      .systems {
+        position: absolute;
+        top: 5px;
+        right: 0;
+      }
+      .sticker {
+        position: absolute;
+        top: -20px;
+        left: -30px;
+        z-index: 3;
+      }
+    }
   }
 }

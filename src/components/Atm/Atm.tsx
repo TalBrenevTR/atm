@@ -32,6 +32,10 @@ function Atm({ cardNumber } : { cardNumber: string }) {
         <Screen mainText="Welcome to the ATM"
                 buttonLabels={labels}
                 buttonHandlers={handlers}/>
+        <div className="atm-footer">
+          <img className="systems" src="img/systems.png" alt="Systems" />
+          <img className="sticker" src="img/sticker_graf.png" alt="" />
+        </div>
       </div>
     </div>
   );

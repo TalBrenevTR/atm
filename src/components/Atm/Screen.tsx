@@ -1,6 +1,7 @@
 
-export function Screen({ mainText, buttonLabels, buttonHandlers }:
+export function Screen({ mainText, typedText, buttonLabels, buttonHandlers }:
                        { mainText: string,
+                         typedText: string,
                          buttonLabels: Array<string | null>,
                          buttonHandlers: Array<null | (() => void)>}) {
   return (
@@ -15,6 +16,7 @@ export function Screen({ mainText, buttonLabels, buttonHandlers }:
       </div>
       <div className="screen">
         <p className="main-text">{mainText}</p>
+        <p className="typed-text">{typedText}</p>
         <div className="labels-left">
           {[0,1,2,3].map(n =>
             <div className="label" key={n}>

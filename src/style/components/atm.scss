@@ -1,7 +1,7 @@
 .Atm {
   display: flex;
   flex-flow: column;
-  width: 350px;
+  width: 450px;
   height: 100vh;
   box-sizing: border-box;
   margin: auto;
@@ -36,5 +36,109 @@
     margin: auto;
 
     border-top: 5px solid $gray-2;
+
+    .atm-screen {
+      >div {
+        display: inline-block;
+        vertical-align: bottom;
+      }
+
+      .right-line, .left-line {
+        width: 30px;
+        height: 3px;
+        position: absolute;
+        top: 50%;
+        z-index: 1;
+      }
+
+      .right-line {
+        right: 0;
+        transform: translate(100%, -50%);
+      }
+
+      .left-line {
+        left: 0;
+        transform: translate(-100%, -50%);
+      }
+
+      .buttons {
+        width: 20%;
+
+        .button {
+          position: relative;
+          width: 60%;
+          height: 25px;
+          background-color: $gray-3;
+          border-radius: 5px;
+          border-top: solid 2px $gray-4;
+          border-bottom: solid 2px $gray-1;
+          cursor: pointer;
+          margin: 10px auto;
+          box-sizing: border-box;
+          &:active {
+            background-color: darken($gray-3, 7);
+          }
+
+          .right-line, .left-line {
+            background-color: $gray-1;
+          }
+        }
+      }
+
+      .screen {
+        position: relative;
+        width: 60%;
+        height: 225px;
+        background-color: $light-blue;
+        border: 5px solid $gray-5;
+        box-sizing: border-box;
+        z-index: 2;
+        overflow: hidden;
+
+        &, * {
+          font-family: "Press Start 2P", system-ui;
+          color: white;
+        }
+
+        .main-text {
+          font-size: 15px;
+          text-align: center;
+        }
+
+        .labels-left, .labels-right {
+          display: inline-block;
+          position: absolute;
+          bottom: 0;
+
+          .label {
+            position: relative;
+            height: 35px;
+
+            >div {
+              padding-top: 7px;
+              span {
+                vertical-align: middle;
+                font-size: 8px;
+                padding: 0 5px;
+              }
+            }
+
+            .right-line, .left-line {
+              background-color: white;
+              z-index: 1;
+            }
+          }
+        }
+
+        .labels-left {
+          left: 15px;
+          text-align: left;
+        }
+        .labels-right {
+          right: 15px;
+          text-align: right;
+        }
+      }
+    }
   }
 }

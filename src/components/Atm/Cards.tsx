@@ -13,7 +13,8 @@ export function Cards({ activeCard } : { activeCard: string | null}) {
                            card +
                            (card === activeCard ? "_active" : "_inactive") +
                            ".png"} 
-                      alt={card} />)}
+                      alt={card}
+                      key={card} />)}
     </div>
   )
 }

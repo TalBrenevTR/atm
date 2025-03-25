@@ -43,15 +43,11 @@ function Atm({ cardNumber, exit } :
 
   function submitPin() {
     setLoading(true);
-    api.authenticate(cardNumber as string, pin, ({ success, error, value }) => {
-      setLoading(false);
-      if (success) {
-        setUser(value as User);
-      }
-      else {
-        setError(error as string);
-      }
-    });
+    api.authenticate(cardNumber as string,
+                     pin,
+                     setUser,
+                     setError,
+                     () => setLoading(false));
   }
 
   let buttonLabels: Array<string | null> = nulls.slice();

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Screen } from "./Screen";
 import { Keypad } from "./Keypad";
+import { ApiContext, User } from '../../api';
 
 const nulls = [null,
                null,
@@ -14,11 +15,18 @@ const nulls = [null,
 function Atm({ cardNumber, exit } :
              { cardNumber: string | null,
                exit: () => void }) {
-  let [user, setUser] = useState(null);
+  let [user, setUser] = useState<User | null>(null);
   let [pin, setPin] = useState("");
+  let [error, setError] = useState<string | null>(null);
+  let [loading, setLoading] = useState<boolean>(false);
+
+  const api = useContext(ApiContext);
 
   function handleExit() {
     setUser(null);
+    setPin("");
+    setError(null);
+    setLoading(false);
     exit()
   }
 
@@ -34,6 +42,16 @@ function Atm({ cardNumber, exit } :
   }
 
   function submitPin() {
+    setLoading(true);
+    api.authenticate(cardNumber as string, pin, ({ success, error, value }) => {
+      setLoading(false);
+      if (success) {
+        setUser(value as User);
+      }
+      else {
+        setError(error as string);
+      }
+    });
   }
 
   let buttonLabels: Array<string | null> = nulls.slice();
@@ -41,7 +59,27 @@ function Atm({ cardNumber, exit } :
   let mainText = "";
   let typedText = "";
 
-  if (cardNumber) {
+  if (loading) {
+    mainText = "Loading...";
+  }
+
+  else if (error) {
+    switch (error) {
+      case "CARD_INVALID":
+        mainText = "Your card is invalid."
+        buttonLabels[7] = "Exit";
+        buttonHandlers[7] = handleExit;
+        break
+      case "INCORRECT_PIN":
+        mainText = "The PIN you entered is incorrect."
+        buttonLabels[3] = "Exit";
+        buttonHandlers[3] = handleExit;
+        buttonLabels[7] = "Re-Enter PIN";
+        buttonHandlers[7] = () => setError(null);
+        break
+    }
+  }
+  else if (cardNumber) {
     if (!user) {
       buttonLabels[3] = "Exit";
       buttonHandlers[3] = handleExit;

@@ -10,8 +10,15 @@ const nulls = [null,
                null,
                null];
 
-function Atm({ cardNumber } : { cardNumber: string | null }) {
+function Atm({ cardNumber, exit } :
+             { cardNumber: string | null,
+               exit: () => void }) {
   let [user, setUser] = useState(null);
+
+  function handleExit() {
+    setUser(null);
+    exit()
+  }
 
   let buttonLabels: Array<string | null> = nulls.slice();
   let buttonHandlers: Array<null | (() => void)> = nulls.slice();
@@ -19,6 +26,8 @@ function Atm({ cardNumber } : { cardNumber: string | null }) {
 
   if (cardNumber) {
     if (!user) {
+      buttonLabels[3] = "Exit";
+      buttonHandlers[3] = handleExit;
       buttonLabels[7] = "Enter PIN";
       buttonHandlers[7] = () =>  console.log("Test");
       mainText = "Welcome to the ATM";

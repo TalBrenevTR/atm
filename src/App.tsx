@@ -10,7 +10,8 @@ function App() {
       {(!cardNumber) &&
        <CardReader setCardNumber={(cardNumber) => setCardNumber(cardNumber)} />}
       <div className="App">
-        <Atm cardNumber={cardNumber} />
+        <Atm cardNumber={cardNumber}
+             exit={() => setCardNumber(null)}/>
       </div>
     </>
   )

@@ -34,8 +34,14 @@
     flex: 1;
     background-color: $white;
     margin: auto;
-
     border-top: 5px solid $gray-2;
+
+    .atm-cards {
+      width: 60%;
+      margin: 5px auto;
+      display: grid;
+      grid-template-columns: repeat(6, auto);
+    }
 
     .atm-screen {
       >div {

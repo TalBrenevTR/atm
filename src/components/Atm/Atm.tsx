@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Screen } from "./Screen";
 import { Keypad } from "./Keypad";
+import { Cards } from "./Cards";
 import { ApiContext, User } from '../../api';
 
 const nulls = [null,
@@ -108,6 +109,7 @@ function Atm({ cardNumber, exit } :
         <img className="atm-sign-graffiti" src="img/graffiti.png" alt="" />
       </div>
       <div className="atm-body">
+        <Cards activeCard={user ? user.card : null} />
         <Screen mainText={mainText}
                 typedText={typedText}
                 buttonLabels={buttonLabels}
